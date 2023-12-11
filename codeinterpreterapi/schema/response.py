@@ -14,13 +14,20 @@ class UserRequest(HumanMessage):
 
 
 class CodeInterpreterResponse(AIMessage):
+    """
+    Response from the code interpreter agent.
+
+    files: list of files to be sent to the user (File )
+    code_log: list[tuple[str, str]] = []
+    """
+
     files: list[File] = []
-    # final_code: str = ""  TODO: implement
-    # final_output: str = ""  TODO: implement
+    code_log: list[tuple[str, str]] = []
 
     def show(self):
         print("AI: ", self.content)
         for file in self.files:
+            print("File: ", file.name)
             file.show_image()
 
     def __str__(self):
